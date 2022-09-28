@@ -10,7 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
+from rest_framework import authentication
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'rest_framework.authtoken',
     # добавляем новые проекты 
     'api.apps.ApiConfig',
 
@@ -46,6 +48,12 @@ INSTALLED_APPS = [
 
     # добавляем библиотеку для API 
     'rest_framework',
+
+    # локальный сервер 
+    'django_webpack_dev_server',
+    
+    # токен 
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +143,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # cервер будет доступен всем 
 CORS_ALLOW_ALL_ORIGINS = True
+
+REST_FRAMEWORK ={
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+
+    # аунтификация по токинам 
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication'
+    ]
+}
+
+# указываем ссылку на папку с картинками 
+MEDIA_MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
