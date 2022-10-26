@@ -4,6 +4,6 @@ import 'package:dartz/dartz.dart';
 import '../../../core/error/failure.dart';
 
 abstract class UserRepository {
-  Future<Either<Failure, List<UserEntity>>> postUser(dynamic object);
+  Future<Either<Failure, List<UserEntity>>> postUser(UserEntity user);
   Future<Either<Failure, List<UserEntity>>> searchUser(String query);
 }

@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-Order orderFromJson(String str) => Order.fromJson(json.decode(str));
-
-String orderToJson(Order data) => json.encode(data.toJson());
-
+import 'package:coffee_house/features/domain/entities/order_entity.dart';
 // class Order {
 //   Order({
 //     required this.count,
@@ -33,22 +28,21 @@ String orderToJson(Order data) => json.encode(data.toJson());
 //       };
 // }
 
-class Order {
+class Order extends OrderEntity {
   Order({
-    required this.userToken,
-    required this.date,
-    required this.coffee,
-    required this.topping,
-    required this.dessert,
-    required this.sumTable,
-  });
-
-  String userToken;
-  DateTime date;
-  int coffee;
-  int topping;
-  int dessert;
-  int sumTable;
+    required userToken,
+    required date,
+    required coffee,
+    required topping,
+    required dessert,
+    required sumTable,
+  }) : super(
+            userToken: userToken,
+            date: date,
+            coffee: coffee,
+            topping: topping,
+            dessert: dessert,
+            sumTable: sumTable);
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
         userToken: json["userToken"],

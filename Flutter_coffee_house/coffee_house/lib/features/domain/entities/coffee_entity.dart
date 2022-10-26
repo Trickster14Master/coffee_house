@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CoffeeEntity extends Equatable {
-  CoffeeEntity({
+  const CoffeeEntity({
     required this.id,
     required this.name,
     required this.description,

@@ -4,15 +4,15 @@ import 'package:coffee_house/features/data/datasources/url.dart';
 import 'package:http/http.dart' as http;
 import '../../../core/error/exception.dart';
 
-abstract class PersonRemoteDataSource {
+abstract class ToppingRemoteDataSource {
   Future<List<Topping>> getAllTopping();
   Future<List<Topping>> searchTopping(String query);
 }
 
-class PersonRemoteDataSourceImpl implements PersonRemoteDataSource {
+class ToppingRemoteDataSourceImpl implements ToppingRemoteDataSource {
   final http.Client client;
 
-  PersonRemoteDataSourceImpl({required this.client});
+  ToppingRemoteDataSourceImpl({required this.client});
 
   @override
   Future<List<Topping>> getAllTopping() => _getToppingFromUrl(topping_url);

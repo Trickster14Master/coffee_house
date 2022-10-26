@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-User userFromJson(String str) => User.fromJson(json.decode(str));
-
-String userToJson(User data) => json.encode(data.toJson());
+import 'package:coffee_house/features/domain/entities/user_entity.dart';
 
 // class User {
 //   User({
@@ -33,16 +29,12 @@ String userToJson(User data) => json.encode(data.toJson());
 //       };
 // }
 
-class User {
+class User extends UserEntity {
   User({
-    required this.id,
-    required this.userName,
-    required this.userPassword,
-  });
-
-  int id;
-  String userName;
-  String userPassword;
+    required id,
+    required userName,
+    required userPassword,
+  }) : super(id: id, userName: userName, userPassword: userPassword);
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],

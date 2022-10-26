@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class OrderEntity extends Equatable {
-  OrderEntity({
+  const OrderEntity({
     required this.userToken,
     required this.date,
     required this.coffee,

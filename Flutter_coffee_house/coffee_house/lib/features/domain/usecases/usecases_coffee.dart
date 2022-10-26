@@ -6,11 +6,9 @@ import '../../../core/usecases/usecases.dart';
 import '../repositories/coffe_repository.dart';
 
 class GetAllCoffee extends ZeroUseCase<List<CoffeeEntity>> {
-  // пекременная для репозитория
   final CoffeeRepository coffeeRepository;
   GetAllCoffee(this.coffeeRepository);
 
-  // метод для получения персонажей из репозитория
   Future<Either<Failure, List<CoffeeEntity>>> call() async {
     return await coffeeRepository.getAllCoffee();
   }

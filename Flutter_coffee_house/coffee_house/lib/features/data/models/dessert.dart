@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import '../../domain/entities/dessert_entity.dart';
+
 Dessert dessertFromJson(String str) => Dessert.fromJson(json.decode(str));
 
 String dessertToJson(Dessert data) => json.encode(data.toJson());
@@ -33,18 +35,13 @@ String dessertToJson(Dessert data) => json.encode(data.toJson());
 //       };
 // }
 
-class Dessert {
+class Dessert extends DessertEntity {
   Dessert({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.urlsImage,
-  });
-
-  int id;
-  String name;
-  int price;
-  String urlsImage;
+    required id,
+    required name,
+    required price,
+    required urlsImage,
+  }) : super(id: id, name: name, price: price, urlsImage: urlsImage);
 
   factory Dessert.fromJson(Map<String, dynamic> json) => Dessert(
         id: json["id"],

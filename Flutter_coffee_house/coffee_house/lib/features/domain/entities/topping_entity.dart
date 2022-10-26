@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
 class ToppingEntity extends Equatable {
-  ToppingEntity({
+  const ToppingEntity({
     required this.id,
     required this.name,
     required this.price,

@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-Topping toppingFromJson(String str) => Topping.fromJson(json.decode(str));
-
-String toppingToJson(Topping data) => json.encode(data.toJson());
+import 'package:coffee_house/features/domain/entities/topping_entity.dart';
 
 // class Topping {
 //   Topping({
@@ -33,20 +29,19 @@ String toppingToJson(Topping data) => json.encode(data.toJson());
 //       };
 // }
 
-class Topping {
+class Topping extends ToppingEntity {
   Topping({
-    required this.id,
-    required this.name,
-    required this.price,
-    required this.volume,
-    required this.urlsImage,
-  });
-
-  int id;
-  String name;
-  int price;
-  int volume;
-  String urlsImage;
+    required id,
+    required name,
+    required price,
+    required volume,
+    required urlsImage,
+  }) : super(
+            id: id,
+            name: name,
+            price: price,
+            volume: volume,
+            urlsImage: urlsImage);
 
   factory Topping.fromJson(Map<String, dynamic> json) => Topping(
         id: json["id"],

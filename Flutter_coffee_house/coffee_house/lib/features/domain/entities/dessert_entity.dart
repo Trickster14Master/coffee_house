@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class DessertEntity extends Equatable {
-  DessertEntity({
+  const DessertEntity({
     required this.id,
     required this.name,
     required this.price,

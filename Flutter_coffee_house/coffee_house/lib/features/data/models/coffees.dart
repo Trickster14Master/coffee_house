@@ -1,12 +1,4 @@
-// To parse this JSON data, do
-//
-//     final coffee = coffeeFromJson(jsonString);
-
-import 'dart:convert';
-
-Coffee coffeeFromJson(String str) => Coffee.fromJson(json.decode(str));
-
-String coffeeToJson(Coffee data) => json.encode(data.toJson());
+import 'package:coffee_house/features/domain/entities/coffee_entity.dart';
 
 // class Coffee {
 //     Coffee({
@@ -36,31 +28,32 @@ String coffeeToJson(Coffee data) => json.encode(data.toJson());
 //     };
 // }
 
-class Coffee {
-  Coffee({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.volume,
-    required this.urls,
-  });
+class CoffeeModel extends CoffeeEntity {
+  CoffeeModel({
+    required id,
+    required name,
+    required description,
+    required price,
+    required volume,
+    required urls,
+  }) : super(
+            id: id,
+            name: name,
+            description: description,
+            price: price,
+            volume: volume,
+            urls: urls);
 
-  int id;
-  String name;
-  String description;
-  int price;
-  int volume;
-  dynamic urls;
-
-  factory Coffee.fromJson(Map<String, dynamic> json) => Coffee(
-        id: json["id"],
-        name: json["name"],
-        description: json["description"],
-        price: json["price"],
-        volume: json["volume"],
-        urls: json["urls"],
-      );
+  factory CoffeeModel.fromJson(Map<String, dynamic> json) {
+    return CoffeeModel(
+      id: json["id"],
+      name: json["name"],
+      description: json["description"],
+      price: json["price"],
+      volume: json["volume"],
+      urls: json["urls"],
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "id": id,
