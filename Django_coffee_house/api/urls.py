@@ -10,6 +10,9 @@ routerCoffee.register(r'Coffee', views.CoffeeAPI)
 routerOrder = routers.SimpleRouter()
 routerOrder.register(r'Order', views.OrderAPI)
 
+postRouterOrder = routers.SimpleRouter()
+postRouterOrder.register(r'PostOrder', views.PostOrderAPI)
+
 # топпинг 
 routerTopping = routers.SimpleRouter()
 routerTopping.register(r'Topping', views.ToppingAPI)
@@ -22,6 +25,12 @@ routerUser.register(r'User', views.UserAPI)
 routerDessert = routers.SimpleRouter()
 routerDessert.register(r'Dessert', views.DessertAPI)
 
+# продукт
+routerProduct = routers.SimpleRouter()
+routerProduct.register(r'Product', views.ProductAPI)
+
+
+
 
 urlpatterns = [
     path('', views.getRoutes),
@@ -30,6 +39,8 @@ urlpatterns = [
     path("Topping/", include(routerTopping.urls)),
     path("User/", include(routerUser.urls)),
     path("Dessert/", include(routerDessert.urls)),
+    path("Product/", include(routerProduct.urls)),
+    path("PostOrder/", include(postRouterOrder.urls)),
     # url для авторизации (встроено)
     # path("avtor/", include('rest_framework.urls'))
     # url для авторизации (djoser)

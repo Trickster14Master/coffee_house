@@ -1,11 +1,17 @@
 from dataclasses import field
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-from .models import Coffee, Dessert, Order, User, Topping
+from .models import Coffee, Dessert, Order, User, Topping,Product
+
 # сериализация данных кофе
 class coffeeSerializer(ModelSerializer):
     class Meta:
         model= Coffee
+        fields='__all__'
+
+class productSerializer(ModelSerializer):
+    class Meta:
+        model= Product
         fields='__all__'
 
 # сериализация данных кофе
@@ -25,7 +31,15 @@ class userSerializer(ModelSerializer):
         fields='__all__'
         
 class orderSerializer(ModelSerializer):
-    sum_table = serializers
+    product = productSerializer(read_only=True, many=True)
+    # coffee = coffeeSerializer(read_only=True, many=True)
+    # topping = toppingSerializer(read_only=True, many=True)
+    # dessert = dessertSerializer(read_only=True, many=True)
     class Meta:
         model= Order
-        fields=('userToken','date','coffee','topping','dessert','sum_table',)
+        fields=('userToken','date','product')
+
+class postOrderSerializer(ModelSerializer):
+    class Meta:
+        model= Order
+        fields='__all__'

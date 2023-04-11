@@ -5,7 +5,9 @@ from rest_framework.permissions import *
 from rest_framework.authentication import TokenAuthentication
 from api.permissions import IsAdminOrReadOnly
 from .serializers import *
-from .models import Coffee, Order
+from .models import Coffee, Order, Product
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 # маршруты которые будут использоваться 
 @api_view(['GET'])
@@ -42,6 +44,29 @@ def getRoutes(request):
     return Response(routes)
 
 
+class ProductAPI(viewsets.ModelViewSet):
+    queryset= Product.objects.all()
+    serializer_class= productSerializer 
+    authentication_classes=(TokenAuthentication,)
+    
+class OrderAPI(viewsets.ModelViewSet):
+    queryset= Order.objects.all()
+    serializer_class = orderSerializer 
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ['userToken']
+
+class PostOrderAPI(viewsets.ModelViewSet):
+    queryset= Order.objects.all()
+    serializer_class= postOrderSerializer 
+    # права в зависимости от пользователя 
+    #permission_classes=(IsAdminOrReadOnly,)
+    # в зависимости от того естли токен будет выдан доступ 
+
+
+
+
+
+
 
 
 class CoffeeAPI(viewsets.ModelViewSet):
@@ -51,14 +76,6 @@ class CoffeeAPI(viewsets.ModelViewSet):
     # permission_classes=(IsAdminOrReadOnly,)
     # в зависимости от того естли токен будет выдан доступ 
     authentication_classes=(TokenAuthentication,)
-    
-class OrderAPI(viewsets.ModelViewSet):
-    queryset= Order.objects.all()
-    serializer_class= orderSerializer 
-    # права в зависимости от пользователя 
-    permission_classes=(IsAdminOrReadOnly,)
-    # в зависимости от того естли токен будет выдан доступ 
-    
 class DessertAPI(viewsets.ModelViewSet):
     queryset= Dessert.objects.all()
     serializer_class= dessertSerializer 

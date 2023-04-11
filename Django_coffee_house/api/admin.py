@@ -10,6 +10,9 @@ admin.site.register(Topping)
 from .models import User
 admin.site.register(User)
 
+from .models import Product
+admin.site.register(Product)
+
 from .models import Order
 admin.site.register(Order)
 
