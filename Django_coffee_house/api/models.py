@@ -67,6 +67,13 @@ class Order (models.Model):
     userToken = models.TextField(default="")
     date= models.DateTimeField(auto_now_add=True)
     product = models.ManyToManyField(Product)
+    price = models.IntegerField(null=True)
+
+    class Meta:
+        ordering = ['userToken']
+
+    def __str__(self):
+        return self.userToken[0:50]
     # coffee = models.ManyToManyField(Coffee)
     # topping = models.ManyToManyField(Topping)
     # dessert = models.ManyToManyField(Dessert)

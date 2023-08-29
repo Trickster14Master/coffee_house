@@ -48,6 +48,8 @@ class ProductAPI(viewsets.ModelViewSet):
     queryset= Product.objects.all()
     serializer_class= productSerializer 
     authentication_classes=(TokenAuthentication,)
+    filter_backends = (DjangoFilterBackend, SearchFilter)
+    search_fields = ['type']
     
 class OrderAPI(viewsets.ModelViewSet):
     queryset= Order.objects.all()

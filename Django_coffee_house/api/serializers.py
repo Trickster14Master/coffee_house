@@ -37,7 +37,7 @@ class orderSerializer(ModelSerializer):
     # dessert = dessertSerializer(read_only=True, many=True)
     class Meta:
         model= Order
-        fields=('userToken','date','product')
+        fields=('userToken','date','product','price')
 
 class postOrderSerializer(ModelSerializer):
     class Meta:
